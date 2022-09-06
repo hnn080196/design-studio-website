@@ -1,0 +1,26 @@
+ div.public-layout {
+   nav.navbar {
+     &.ds-bg-custom {
+       background-color: #fff !important;
+     }
+
+     padding: 0;
+     height: 54px;
+
+     .container-fluid {
+       height: 100%;
+     }
+   }
+
+   .navbar-collapse {
+     .navbar-nav {
+       .nav-item {
+         .nav-link {
+           padding: 15px 22px;
+
+         }
+       }
+     }
+   }
+
+ }

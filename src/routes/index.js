@@ -1,5 +1,6 @@
 // import About from "pages/About";
 // import Home from "pages/Home";
+import PublicLayout from "layout/PublicLayout";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LazyLoadComponent from "./LazyLoad";
@@ -15,16 +16,18 @@ const Navigation = (props) => {
   return (
     <LazyLoadComponent>
       <BrowserRouter>
-        <Routes>
-          <Route index path={"/"} element={<Home />} />
-          <Route path={"residential"} element={<Residential />} />
-          <Route path={"commercial"} element={<Commercial />} />
-          <Route path={"about-us"} element={<About />} />
-          <Route path={"team"} element={<Team />} />
-          <Route path={"news"} element={<News />} />
-          <Route path={"contact"} element={<Contact />} />
-          {/* <Route path={"admin"} element={<About />} /> */}
-        </Routes>
+        <PublicLayout>
+          <Routes>
+            <Route index path={"/"} element={<Home />} />
+            <Route path={"residential"} element={<Residential />} />
+            <Route path={"commercial"} element={<Commercial />} />
+            <Route path={"about-us"} element={<About />} />
+            <Route path={"team"} element={<Team />} />
+            <Route path={"news"} element={<News />} />
+            <Route path={"contact"} element={<Contact />} />
+            {/* <Route path={"admin"} element={<About />} /> */}
+          </Routes>
+        </PublicLayout>
       </BrowserRouter>
     </LazyLoadComponent>
   );

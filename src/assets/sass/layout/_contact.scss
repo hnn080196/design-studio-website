@@ -1,0 +1,46 @@
+.contact-wrap {
+    .title-box {
+        position: relative;
+        margin-bottom: 60px;
+    }
+    .contact-info-group {
+        text-align: center;
+        background: #f7f7f7;
+        min-height: 190px;
+        box-shadow: 2px 6px 29px -6px #e0e0e0;
+        padding: 20px;
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        .contact__icon {
+            font-size: 45px;
+            color: #000;
+            margin-bottom: 30px;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+            &::before {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                content: "";
+                width: 54px;
+                height: 1px;
+                background: #000;
+                display: block;
+                right: 0;
+                margin: auto;
+            }
+        }
+        span {
+            display: block;
+            color: #6d6d6d;
+            font-weight: 500;
+        }
+    }
+}

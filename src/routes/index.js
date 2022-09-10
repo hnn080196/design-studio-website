@@ -1,5 +1,6 @@
 // import About from "pages/About";
 // import Home from "pages/Home";
+import Enums from "config/enums";
 import PublicLayout from "layout/PublicLayout";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,13 +19,13 @@ const Navigation = (props) => {
       <BrowserRouter>
         <PublicLayout>
           <Routes>
-            <Route index path={"/"} element={<Home />} />
-            <Route path={"residential"} element={<Residential />} />
-            <Route path={"commercial"} element={<Commercial />} />
-            <Route path={"about-us"} element={<About />} />
-            <Route path={"team"} element={<Team />} />
-            <Route path={"news"} element={<News />} />
-            <Route path={"contact"} element={<Contact />} />
+            <Route index path={Enums.PATH.HOME} element={<Home />} />
+            <Route path={Enums.PATH.RESIDENTIAL._} element={<Residential />} />
+            <Route path={Enums.PATH.COMMERCIAL._} element={<Commercial />} />
+            <Route path={Enums.PATH.ABOUT} element={<About />} />
+            <Route path={Enums.PATH.TEAM} element={<Team />} />
+            <Route path={Enums.PATH.NEWS} element={<News />} />
+            <Route path={Enums.PATH.CONTACT} element={<Contact />} />
             {/* <Route path={"admin"} element={<About />} /> */}
           </Routes>
         </PublicLayout>

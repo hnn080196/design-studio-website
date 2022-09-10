@@ -1,7 +1,21 @@
-import React from "react";
+import Enums from "config/enums";
+import { withRouter } from "hook/withRouter";
+import React, { Component, Fragment } from "react";
+import { Outlet } from "react-router-dom";
+export class Commercial extends Component {
+  constructor(props) {
+    super(props);
 
-const Commercial = (props) => {
-  return <div>Commercial</div>;
-};
+    this.state = {};
+  }
 
-export default Commercial;
+  render() {
+    return (
+      <Fragment>
+        <Outlet />
+      </Fragment>
+    );
+  }
+}
+
+export default withRouter(Commercial);

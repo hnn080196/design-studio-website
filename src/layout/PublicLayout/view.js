@@ -8,7 +8,7 @@ const PublicLayout = (props) => {
     <header className="public-layout">
       <Container fluid>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home" className="public-layout--brand me-auto">
+          <Navbar.Brand className="public-layout--brand " onClick={(e) => handleRedirect(Enums.PATH.HOME)}>
             <img src={Logo} />
           </Navbar.Brand>
 

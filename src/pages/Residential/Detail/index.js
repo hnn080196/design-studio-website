@@ -1,7 +1,8 @@
+import SliderCommon from "component/Slider";
 import React from "react";
 
 const ResidentialDetail = (props) => {
-  return <div>ResidentialDetai</div>;
+  return <SliderCommon />;
 };
 
 export default ResidentialDetail;

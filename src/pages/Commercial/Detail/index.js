@@ -3,11 +3,7 @@ import { withRouter } from "hook/withRouter";
 import React from "react";
 
 const CommercialDetail = (props) => {
-  return (
-    <section>
-      <SliderCommon />
-    </section>
-  );
+  return <SliderCommon />;
 };
 
 export default withRouter(CommercialDetail);

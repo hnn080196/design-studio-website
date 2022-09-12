@@ -6,7 +6,15 @@ const View = (props) => {
   return (
     <section className="residential">
       <Container fluid>
-        <Row style={{ padding: "15px" }}>
+        <div className="residential__gallery">
+          {data.map((item, index) => (
+            <div className="residential__gallery--item" key={index}>
+              <img src={item.image} />
+              <div className="caption">{item.description}</div>
+            </div>
+          ))}
+        </div>
+        {/* <Row style={{ padding: "15px" }}>
           {data.map((item, index) => (
             <Col xs={3} key={index} style={{ marginBottom: "24px" }}>
               <Card className="imageCard">
@@ -34,7 +42,7 @@ const View = (props) => {
               </Card>
             </Col>
           ))}
-        </Row>
+        </Row> */}
       </Container>
     </section>
   );

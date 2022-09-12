@@ -36,7 +36,7 @@ const Navigation = (props) => {
             </Route>
             <Route path={Enums.PATH.ABOUT} element={<About />} />
             <Route path={Enums.PATH.TEAM} element={<Team />} />
-            <Route path={Enums.PATH.NEWS} element={<News />} />
+            {/* <Route path={Enums.PATH.NEWS} element={<News />} /> */}
             <Route path={Enums.PATH.CONTACT} element={<Contact />} />
             {/* <Route path={"admin"} element={<About />} /> */}
           </Routes>

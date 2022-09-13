@@ -1,7 +1,7 @@
 import Repo from "./interface/MariaDbRepo";
 
 const tableName = "project";
-const keyName = "projectId";
+const keyName = "id";
 
 class ProjectRepo {
 
@@ -36,7 +36,7 @@ class ProjectRepo {
         return await Repo.count(tableName, keyName);
     }
 
-    async findByType(type) {
+    async findByTypePublic(type) {
         let rs = await Repo.query(`SELECT * FROM ?? where ?? = ?`, [tableName, `type`], [type])
         return rs[0];
     }

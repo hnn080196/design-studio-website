@@ -1,11 +1,12 @@
 var config = {};
 config.http = {};
 config.mariaDBConfig = {};
-config.http.port = 9980;
-config.mariaDBConfig.host = '192.168.18.49';
-config.mariaDBConfig.port = '32435';
+config.http.port = 8989;
+config.mariaDBConfig.host = '222.255.238.174';
+config.mariaDBConfig.port = '3306';
 config.mariaDBConfig.username = 'root';
 config.mariaDBConfig.password = 'AbCd@1234';
-config.mariaDBConfig.database = 'simulator';
+config.mariaDBConfig.database = 'studio';
+config.mariaDBConfig.connectionTimeout = 10;
 
 export default config;

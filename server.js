@@ -9,36 +9,60 @@ dotenv.config()
 import jwt from "jsonwebtoken";
 import express from "express";
 import config from "./config.js";
+import multer from "multer";
+import path from 'path';
+
+const __dirname = path.resolve();
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+
+var upload = multer({ storage: storage })
 
 const app = express();
 const port = 8989;
-
+app.use(express.json())
+app.use('/uploads', express.static('uploads'));
 app.listen(port, () => console.log(`Listening on port ${port}`));
 MariaDbRepo.createConnection(config)
 app.post('/admin/login', async (req, res) => {
+    console.log("Start login")
+    try {
+        console.log(req.body)
+        let input = req.body;
+        let admin = await AdminRepo.findByUsername(input.username);
+        if (admin.password == input.password) {
+            let jwtSecretKey = process.env.JWT_SECRET_KEY;
+            let data = {
+                username: admin.username,
+                time: Date()
+            }
+            console.log(jwtSecretKey)
+            const token = jwt.sign(data, jwtSecretKey);
 
-	let admin = await AdminRepo.findByUsername(req.body.username);
-	if (admin.password == req.body.password) {
-		let jwtSecretKey = process.env.JWT_SECRET_KEY;
-    	let data = {
-    		username: admin.username,
-        	time: Date()
-    	}
-
-	    const token = jwt.sign(data, jwtSecretKey);
-
-    	res
-        	.json({
-            	token: token
-        	})
-    	;
-	} else {
-		res
-        	.json({
-            	code: 401
-        	})
-    	;
-	}
+            res
+                .json({
+                    token: token
+                })
+            ;
+        } else {
+            res
+                .json({
+                    code: 401
+                })
+            ;
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            code: 500
+        });
+    }
     
 });
 app.post('/admin/project', async (req, res) => {
@@ -55,10 +79,10 @@ app.post('/admin/project', async (req, res) => {
         		images: req.body.images,
         		status: req.body.status,
         		type: req.body.type,
-        		createdAt: Date(),
+        		createdAt: new Date(),
         		createdBy: decoded.payload.username,
-        		modifiedAt: Date(),
-        		modifiedAt: decoded.payload.username
+        		modifiedAt: new Date(),
+        		modifiedBy: decoded.payload.username
         	}
         	await ProjectRepo.create(project);
             res.json({
@@ -91,9 +115,9 @@ app.put('/admin/project', async (req, res) => {
         	project.images = req.body.images;
         	project.status = req.body.status;
         	project.type = req.body.type;
-        	project.modifiedAt = Date();
+        	project.modifiedAt = new Date();
         	project.modifiedBy = decoded.payload.username;
-        	await ProjectRepo.update(project);
+        	await ProjectRepo.update(req.body.id, project);
             res.json({
                 code: 0
             })
@@ -143,6 +167,36 @@ app.delete('/admin/project', async (req, res) => {
             res.json({
                 code: 0
             })
+        } else {
+            // Access Denied
+            res.status(403).json({
+                code: 403
+            });
+        }
+    } catch (error) {
+        // Access Denied
+        res.status(500).json({
+            code: 500
+        });
+    }
+});
+app.post('/admin/upload', upload.single('image'), async (req, res) => {
+    try {
+        const token = req.header('token');
+
+        const verified = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        if (verified) {
+            const file = req.file
+            if (!file) {
+                res.status(400).json({
+                    code: 400
+                });
+            } else {
+                res.json({
+                    code: 0,
+                    data: file.path
+                })
+            }
         } else {
             // Access Denied
             res.status(403).json({

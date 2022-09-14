@@ -1,4 +1,4 @@
-import Repo from "./interface/MariaDbRepo";
+import Repo from "./interface/MariaDbRepo.js";
 
 const tableName = "admin";
 const keyName = "adminId";

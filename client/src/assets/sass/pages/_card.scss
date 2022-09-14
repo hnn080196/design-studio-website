@@ -1,0 +1,56 @@
+.imageCard {
+  &.card {
+    border: none;
+
+    .card-body {
+      padding: 0;
+
+      .card-title h3 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        margin-bottom: 0;
+        margin-top: 12px;
+      }
+    }
+
+    .imageCard__wrapper {
+      position: relative;
+      cursor: pointer;
+
+      &:hover .imageCard__wrapper--hover {
+        height: 100%;
+      }
+
+      .imageCard__wrapper--hover {
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+
+        height: 0;
+
+        // padding: 10px;
+        transition: all .3s ease-in-out 0s;
+
+        p {
+          padding: 10px;
+          color: #fff;
+          font-size: 14px;
+          text-align: justify;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  // .card-img,
+  // .card-img-bottom
+  .card-img.imageCard-img {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+  }
+}

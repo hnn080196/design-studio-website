@@ -18,29 +18,73 @@ const ResidentialList = React.lazy(() => import("pages/Residential/List"));
 const CommercialDetail = React.lazy(() => import("pages/Commercial/Detail"));
 
 const CommercialList = React.lazy(() => import("pages/Commercial/List"));
+const Login = React.lazy(() => import("pages/Admin/Login"));
 
 const Navigation = (props) => {
   return (
     <LazyLoadComponent>
       <BrowserRouter>
-        <PublicLayout>
-          <Routes>
-            <Route index path={Enums.PATH.HOME} element={<Home />} />
-            <Route path={Enums.PATH.RESIDENTIAL._} element={<Residential />}>
-              <Route path="" element={<ResidentialList />} />
-              <Route path=":id" element={<ResidentialDetail />} />
-            </Route>
-            <Route path={Enums.PATH.COMMERCIAL._} element={<Commercial />}>
-              <Route path="" element={<CommercialList />} />
-              <Route path=":id" element={<CommercialDetail />} />
-            </Route>
-            <Route path={Enums.PATH.ABOUT} element={<About />} />
-            <Route path={Enums.PATH.TEAM} element={<Team />} />
-            {/* <Route path={Enums.PATH.NEWS} element={<News />} /> */}
-            <Route path={Enums.PATH.CONTACT} element={<Contact />} />
-            {/* <Route path={"admin"} element={<About />} /> */}
-          </Routes>
-        </PublicLayout>
+        <Routes>
+          <Route
+            index
+            path={Enums.PATH.HOME}
+            element={
+              <PublicLayout>
+                <Home />
+              </PublicLayout>
+            }
+          />
+          <Route path={Enums.PATH.LOGIN} element={<Login />} />
+
+          <Route
+            path={Enums.PATH.RESIDENTIAL._}
+            element={
+              <PublicLayout>
+                <Residential />
+              </PublicLayout>
+            }
+          >
+            <Route path="" element={<ResidentialList />} />
+            <Route path=":id" element={<ResidentialDetail />} />
+          </Route>
+          <Route path={Enums.PATH.COMMERCIAL._} element={<Commercial />}>
+            <Route
+              path=""
+              element={
+                <PublicLayout>
+                  <CommercialList />
+                </PublicLayout>
+              }
+            />
+            <Route path=":id" element={<CommercialDetail />} />
+          </Route>
+          <Route
+            path={Enums.PATH.ABOUT}
+            element={
+              <PublicLayout>
+                <About />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path={Enums.PATH.TEAM}
+            element={
+              <PublicLayout>
+                <Team />
+              </PublicLayout>
+            }
+          />
+          {/* <Route path={Enums.PATH.NEWS} element={<News />} /> */}
+          <Route
+            path={Enums.PATH.CONTACT}
+            element={
+              <PublicLayout>
+                <Contact />
+              </PublicLayout>
+            }
+          />
+          {/* <Route path={"admin"} element={<About />} /> */}
+        </Routes>
       </BrowserRouter>
     </LazyLoadComponent>
   );

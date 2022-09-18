@@ -11,12 +11,12 @@ export class BaseServices {
       headers: { "Content-Type": "application/json", token: localStorage.getItem(TOKEN) }
     });
   };
-  post = (url, model) => {
+  post = (url, model, headers) => {
     return axios({
       baseURL: DOMAIN,
-      url: url,
+      url: `localhost:8989${url}`,
       data: model,
-      headers: { "Content-Type": "application/json", token: localStorage.getItem(TOKEN) }
+      headers: headers
     });
   };
   get = (url) => {

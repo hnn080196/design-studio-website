@@ -1,21 +1,26 @@
+import axios from "axios";
 import { BaseServices } from "base";
+import { TOKEN } from "config/config";
 
-class KYC extends BaseServices {
-  constructor() {
-    super();
-    this.url = "/admin/login";
-  }
-  login = (payload) => {
-    console.log("Call API Login");
-    return this.post(this.url, payload);
-  };
-}
-const UserServices = new KYC();
-
+import Swal from "sweetalert2";
 export const loginAction = (payload) => async (dispatch) => {
   try {
-    const response = await UserServices.login(payload);
-    console.log("success");
+    // const response = await UserServices.login(payload);
+    axios
+      .post("/admin/login", payload)
+      .then((res) => {
+        const { data } = res;
+        localStorage.setItem(TOKEN, data.token);
+        Swal.fire("Đăng Nhập Thành Công", "You clicked the button!", "success").then((result) => {
+          if (result.isConfirmed) {
+            window.history.replaceState({}, "", "/");
+          }
+        });
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
+
     // dispatch({
     //   type: "LOGIN",
     //   payload: response.data

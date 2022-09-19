@@ -1,9 +1,10 @@
 // import About from "pages/About";
 // import Home from "pages/Home";
 import Enums from "config/enums";
+import AdminLayout from "layout/AdminLayout";
 import PublicLayout from "layout/PublicLayout";
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { Fragment } from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import LazyLoadComponent from "./LazyLoad";
 const Home = React.lazy(() => import("pages/Home"));
 const About = React.lazy(() => import("pages/About"));
@@ -19,7 +20,12 @@ const CommercialDetail = React.lazy(() => import("pages/Commercial/Detail"));
 
 const CommercialList = React.lazy(() => import("pages/Commercial/List"));
 const Login = React.lazy(() => import("pages/Admin/Login"));
+const AdminComponent = React.lazy(() => import("pages/Admin/AdminManage"));
 
+const AdminProjectComponent = React.lazy(() => import("pages/Admin/AdminManage/Project"));
+const ProjectList = React.lazy(() => import("pages/Admin/AdminManage/Project/List"));
+const CreateProject = React.lazy(() => import("pages/Admin/AdminManage/Project/Create"));
+const UpdateProject = React.lazy(() => import("pages/Admin/AdminManage/Project/Update"));
 const Navigation = (props) => {
   return (
     <LazyLoadComponent>
@@ -84,6 +90,21 @@ const Navigation = (props) => {
             }
           />
           {/* <Route path={"admin"} element={<About />} /> */}
+          <Route
+            path={Enums.PATH.ADMIN._}
+            element={
+              <AdminLayout>
+                <Outlet />
+                {/* <AdminComponent /> */}
+              </AdminLayout>
+            }
+          >
+            <Route path={Enums.PATH.ADMIN.PROJECT} element={<AdminProjectComponent />}>
+              <Route path="" element={<ProjectList />} />
+              <Route path="create" element={<CreateProject />} />
+              <Route path="update/:id" element={<UpdateProject />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </LazyLoadComponent>

@@ -3,7 +3,7 @@ const PATH = {
   LOGIN: "/login",
   ADMIN: {
     _: "/admin",
-    PROJECT: "/admin/project"
+    PROJECT: "project"
   },
 
   RESIDENTIAL: {

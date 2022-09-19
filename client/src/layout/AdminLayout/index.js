@@ -1,70 +1,84 @@
-import React from "react";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import AppBar from "@mui/material/AppBar";
+import CssBaseline from "@mui/material/CssBaseline";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import { useNavigate } from "react-router-dom";
 
-const PrivateLayout = () => {
+const drawerWidth = 240;
+
+export default function AdminLayout(props) {
+  const { children } = props;
+  const navigate = useNavigate();
+  const tabLists = [
+    {
+      label: "Danh Sách Project",
+      route: "/"
+    },
+    {
+      label: "Tạo Project",
+      route: "/"
+    }
+  ];
+
   return (
-    <div>
-      <div>
-        <nav
-          id="sidenav-1"
-          data-mdb-close-on-esc="false"
-          className="sidenav"
-          data-mdb-hidden="false"
-          data-mdb-position="absolute"
-          data-mdb-focus-trap="false"
-        >
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                {" "}
-                <i className="far fa-smile fa-fw me-3" />
-                <span>Link 1</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-grin fa-fw me-3" />
-                <span>Category 1</span>
-              </a>
-              <ul className="sidenav-collapse show">
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Link 2</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Link 3</a>
-                </li>
-              </ul>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-grin-wink fa-fw me-3" />
-                <span>Category 2</span>
-              </a>
-              <ul className="sidenav-collapse">
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Link 4</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Link 5</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        <div style={{ padding: 20 }} className="text-center">
-          <button
-            data-mdb-toggle="sidenav"
-            data-mdb-target="#sidenav-1"
-            className="btn btn-primary"
-            aria-controls="#sidenav-1"
-            aria-haspopup="true"
-          >
-            <i className="fas fa-bars" />
-          </button>
-          <div className="d-flex justify-content-center my-5" />
-        </div>
-      </div>
-    </div>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Design Studio Admin
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: "border-box" }
+        }}
+      >
+        <Toolbar />
+        <Box sx={{ overflow: "auto" }}>
+          <List>
+            {tabLists.map((item, index) => {
+              return (
+                <ListItem
+                  disablePadding
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(item.route);
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+          <Divider />
+        </Box>
+      </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
+        {children}
+      </Box>
+    </Box>
   );
-};
-
-export default PrivateLayout;
+}

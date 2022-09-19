@@ -13,8 +13,8 @@ export class BaseServices {
   };
   post = (url, model, headers) => {
     return axios({
-      baseURL: DOMAIN,
-      url: `localhost:8989${url}`,
+      // baseURL: DOMAIN,
+      url: url,
       data: model,
       headers: headers
     });

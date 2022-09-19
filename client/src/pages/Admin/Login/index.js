@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Logo from "assets/images/layout/logo.png";
 import "./style.css";
 import { Button, Form } from "react-bootstrap";
 import { withRouter } from "hook/withRouter";
-import { ModelView } from "./model";
-import { useDispatch } from "react-redux";
-import { loginAction } from "store/action/kyc";
+import { TOKEN } from "config/config";
+
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const LoginComponent = (props) => {
   const [data, setData] = useState({
     username: "",
     password: ""
   });
-
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
   const handleOnChange = (name, value) => {
     setData((prevState) => ({ ...prevState, [name]: value }));
     // data[name] = value;
   };
   const handleSubmit = () => {
-    console.log("data", data);
-    dispatch(loginAction(data));
+    axios
+      .post("/admin/login", data)
+      .then((res) => {
+        const { data } = res;
+        localStorage.setItem(TOKEN, data.token);
+        Swal.fire("Đăng Nhập Thành Công", "You clicked the button!", "success").then((result) => {
+          if (result.isConfirmed) {
+            navigate("/");
+          }
+        });
+      })
+      .catch((e) => {
+        console.log("e", e);
+      });
   };
-
-  const fetchingData = async () => {
-    const response = await fetch("/public/project?type=1");
-    console.log("response", response);
-  };
-  useEffect(() => {
-    fetchingData();
-  }, []);
 
   return (
     <section className="h-100 gradient-form" style={{ backgroundColor: "#eee" }}>

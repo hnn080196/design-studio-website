@@ -23,11 +23,11 @@ export default function AdminLayout(props) {
   const tabLists = [
     {
       label: "Danh Sách Project",
-      route: "/"
+      route: "/admin/project"
     },
     {
       label: "Tạo Project",
-      route: "/"
+      route: "/admin/project/create"
     }
   ];
 

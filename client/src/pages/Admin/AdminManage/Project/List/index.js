@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { TOKEN } from "config/config";
 import { Button } from "@mui/material";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -23,6 +25,8 @@ const rows = [
 ];
 const ProjectList = (props) => {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("/admin/project", {
@@ -35,6 +39,44 @@ const ProjectList = (props) => {
       });
   }, []);
 
+  const getListProject = () => {
+    axios
+      .get("/admin/project", {
+        headers: {
+          token: localStorage.getItem(TOKEN)
+        }
+      })
+      .then(({ data }) => {
+        setList(data.data);
+      });
+  };
+  const handleDeleteProject = (name, id) => {
+    Swal.fire({
+      title: `Are you sure delete project ${name}?`,
+      text: "You won't be able to revert this!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete("/admin/project", {
+            headers: {
+              token: localStorage.getItem(TOKEN)
+            },
+            data: { id: id }
+          })
+          .then((result) => {
+            getListProject();
+          });
+      }
+    });
+  };
+  const handleRedirectUpdate = (row) => {
+    navigate(`/admin/project/update/${row.id}`, { state: row });
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -58,10 +100,22 @@ const ProjectList = (props) => {
 
               <TableCell align="center">{row.type}</TableCell>
               <TableCell align="center">
-                <Button size="small" variant="outlined" sx={{ marginRight: "5px" }}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  sx={{ marginRight: "5px" }}
+                  onClick={(e) => {
+                    handleRedirectUpdate(row);
+                  }}
+                >
                   Edit
                 </Button>
-                <Button size="small" variant="outlined" color="error">
+                <Button
+                  size="small"
+                  variant="outlined"
+                  color="error"
+                  onClick={(e) => handleDeleteProject(row.title, row.id)}
+                >
                   Delete
                 </Button>
               </TableCell>

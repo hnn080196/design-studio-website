@@ -1,7 +1,21 @@
-import React from "react";
+import Enums from "config/enums";
+import { withRouter } from "hook/withRouter";
+import React, { Component, Fragment } from "react";
+import { Outlet } from "react-router-dom";
+export class Residential extends Component {
+  constructor(props) {
+    super(props);
 
-const Residential = (props) => {
-  return <div>Residential</div>;
-};
+    this.state = {};
+  }
 
-export default Residential;
+  render() {
+    return (
+      <Fragment>
+        <Outlet />
+      </Fragment>
+    );
+  }
+}
+
+export default withRouter(Residential);

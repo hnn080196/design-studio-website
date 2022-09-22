@@ -2,13 +2,14 @@ import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Logo from "assets/images/layout/logo.png";
 import Enums from "config/enums";
+import { FacebookIcon, InstagramIcon, BehanceIcon } from "./social";
 const PublicLayout = (props) => {
   const { children, handleRedirect } = props;
   return (
     <header className="public-layout">
       <Container fluid>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home" className="public-layout--brand me-auto">
+          <Navbar.Brand className="public-layout--brand " onClick={(e) => handleRedirect(Enums.PATH.HOME)}>
             <img src={Logo} />
           </Navbar.Brand>
 
@@ -24,8 +25,36 @@ const PublicLayout = (props) => {
               </NavDropdown>
               <Nav.Link onClick={(e) => handleRedirect(Enums.PATH.ABOUT)}>ABOUT</Nav.Link>
               <Nav.Link onClick={(e) => handleRedirect(Enums.PATH.TEAM)}>PEOPLE</Nav.Link>
-              <Nav.Link onClick={(e) => handleRedirect(Enums.PATH.NEWS)}>NEWS</Nav.Link>
+              {/* <Nav.Link onClick={(e) => handleRedirect(Enums.PATH.NEWS)}>NEWS</Nav.Link> */}
               <Nav.Link onClick={(e) => handleRedirect(Enums.PATH.CONTACT)}>CONTACTS</Nav.Link>
+
+              <div className="social-button">
+                <iframe
+                  src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=100&layout=button&action=like&size=large&share=false&height=65&appId"
+                  width={80}
+                  height={30}
+                  style={{
+                    border: "none",
+                    overflow: "hidden",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                  scrolling="no"
+                  frameBorder={0}
+                  // allowFullScreen="true"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                />
+                <a href="#">
+                  <FacebookIcon />
+                </a>
+                <a href="#">
+                  <InstagramIcon />
+                </a>
+                <a href="#">
+                  <BehanceIcon />
+                </a>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -1,0 +1,123 @@
+.custom-slider {
+
+  height: 100%;
+  position: relative;
+
+  .slick-slider.slick-initialized {
+    height: 100%;
+    position: relative;
+
+    div.custom-slider__prev {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25%;
+      bottom: 0;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    div.custom-slider__next {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25%;
+      bottom: 0;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .slick-track {
+      display: flex !important;
+      height: calc(100vh - 81px);
+    }
+
+
+
+    // active
+    .slick-slide {
+      height: auto;
+
+      &.slick-active.slick-center {
+        .custom-slider__item {
+          .custom-slider__brightness {
+            background: none;
+          }
+        }
+
+      }
+
+      //normal
+      .custom-slider__item {
+        height: 100vh;
+
+        // padding: 15px;
+
+        outline: none;
+        position: relative;
+
+        .custom-slider__img {
+          width: 100%;
+          height: calc(100vh - 81px);
+        }
+
+        .custom-slider__brightness {
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0.6);
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+
+  .custom-slider__description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    overflow: hidden;
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+
+    &.custom-slider__description--hide {
+      max-height: 130px;
+
+    }
+
+    &.custom-slider__description--show {
+      max-height: 300px;
+    }
+
+    .custom-slider__toolbar {
+      height: 100px;
+
+      &--right {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      &--icons {
+        display: flex;
+        gap: 20px;
+
+        i {
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+
+}

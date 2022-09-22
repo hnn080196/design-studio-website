@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Enums from "config/enums";
+import InputEditorHook from "core/InputEditor";
 const actionRequest = {
   UPLOAD: 0,
   CREATE: 1
@@ -35,9 +36,7 @@ const CreateProject = (props) => {
     status: 0,
     images: ""
   });
-  const handleOnChange = (name, value) => {
-    setData((prevState) => ({ ...prevState, [name]: value }));
-  };
+
   const createProject = async (imageList) => {
     data.images = JSON.stringify(imageList);
     const result = await axios.post("/admin/project", data, {
@@ -46,7 +45,7 @@ const CreateProject = (props) => {
       }
     });
     if (result.status === 200) {
-      Swal.fire("Đăng Nhập Thành Công", "You clicked the button!", "success").then((result) => {
+      Swal.fire("Create Project Success!", "You clicked the button!", "success").then((result) => {
         navigate("/admin/project");
       });
     }
@@ -68,7 +67,9 @@ const CreateProject = (props) => {
     const imageList = await Promise.all(images.map((item) => uploadImages(item.file)));
     createProject(imageList);
   };
-
+  const handleOnChange = (name, value) => {
+    setData((prevState) => ({ ...prevState, [name]: value }));
+  };
   const handleUploadImage = (name, value) => {
     try {
       setImages(value);
@@ -98,20 +99,20 @@ const CreateProject = (props) => {
             required
             id="subTitle"
             label="Sub Title"
+            multiline
+            rows={4}
             placeholder="Please fill project subTitle"
             onChange={(event) => handleOnChange("subTitle", event.target.value)}
           />
-
-          <TextField
-            fullWidth
-            required
+          <InputEditorHook
+            label="Nội dung"
+            required={true}
+            // className="input-default"
             id="content"
-            label="Description"
-            multiline
-            rows={4}
-            onChange={(event) => handleOnChange("content", event.target.value)}
-            placeholder="Please fill project Description"
+            name="content"
+            onChange={handleOnChange}
           />
+
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
             <Select
@@ -128,7 +129,7 @@ const CreateProject = (props) => {
               ))}
             </Select>
           </FormControl>
-          <ImportImage name="images" max={10} onChange={handleUploadImage} />
+          <ImportImage name="images" max={200} onChange={handleUploadImage} />
           <Box display={"flex"} justifyContent="flex-end">
             <Button
               variant="contained"

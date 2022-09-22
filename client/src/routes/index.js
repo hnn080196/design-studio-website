@@ -5,6 +5,7 @@ import AdminLayout from "layout/AdminLayout";
 import PublicLayout from "layout/PublicLayout";
 import React, { Fragment } from "react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { AdminRoute } from "./AdminRouter";
 import LazyLoadComponent from "./LazyLoad";
 const Home = React.lazy(() => import("pages/Home"));
 const About = React.lazy(() => import("pages/About"));
@@ -62,7 +63,14 @@ const Navigation = (props) => {
                 </PublicLayout>
               }
             />
-            <Route path=":id" element={<CommercialDetail />} />
+            <Route
+              path=":id"
+              element={
+                <PublicLayout>
+                  <CommercialDetail />
+                </PublicLayout>
+              }
+            />
           </Route>
           <Route
             path={Enums.PATH.ABOUT}
@@ -89,16 +97,8 @@ const Navigation = (props) => {
               </PublicLayout>
             }
           />
-          {/* <Route path={"admin"} element={<About />} /> */}
-          <Route
-            path={Enums.PATH.ADMIN._}
-            element={
-              <AdminLayout>
-                <Outlet />
-                {/* <AdminComponent /> */}
-              </AdminLayout>
-            }
-          >
+
+          <Route path={Enums.PATH.ADMIN._} element={<AdminRoute />}>
             <Route path={Enums.PATH.ADMIN.PROJECT} element={<AdminProjectComponent />}>
               <Route path="" element={<ProjectList />} />
               <Route path="create" element={<CreateProject />} />

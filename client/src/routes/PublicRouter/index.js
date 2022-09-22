@@ -1,18 +1,15 @@
-import React from "react";
-import { Route } from "react-router-dom";
-
-const PublicRouter = (props) => {
-  const { layout: Layout, component: Component, layoutProps, ...rest } = props;
+import { Navigate, Outlet } from "react-router-dom";
+import { TOKEN } from "config/config";
+import AdminLayout from "layout/AdminLayout";
+export const AdminRoute = ({ children }) => {
+  const token = localStorage.getItem(TOKEN);
+  if (!token) {
+    // user is not authenticated
+    return <Navigate to="/" />;
+  }
   return (
-    <Route
-      {...rest}
-      element={(matchProps) => (
-        <Layout {...layoutProps}>
-          <Component {...matchProps} />
-        </Layout>
-      )}
-    />
+    <AdminLayout>
+      <Outlet />
+    </AdminLayout>
   );
 };
-
-export default PublicRouter;

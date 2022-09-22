@@ -98,10 +98,8 @@ const ImportImage = (props) => {
                 <div
                   className="box-body"
                   style={{
-                    // backgroundImage: `url(${
-                    //   "file" in image ? image.link : `${config.hostStaticResource}${image.link}`
-                    // })`
-                    backgroundImage: `url(${image.link})`
+                    backgroundImage: `url(${"file" in image ? image.link : `/${image.link}`})`
+                    // backgroundImage: `url(${image.link})`
                   }}
                 >
                   <div className="box-body__remove" onClick={() => handleRemoveFile(index)}>

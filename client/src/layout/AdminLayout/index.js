@@ -14,6 +14,10 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Swal from "sweetalert2";
+import { TOKEN } from "config/config";
 
 const drawerWidth = 240;
 
@@ -30,15 +34,39 @@ export default function AdminLayout(props) {
       route: "/admin/project/create"
     }
   ];
-
+  const handleLogout = () => {
+    Swal.fire({
+      title: `Are you sure Logout account ? `,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(TOKEN);
+        navigate("/login");
+      }
+    });
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <Typography variant="h6" noWrap component="div">
             Design Studio Admin
           </Typography>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={(event) => handleLogout()}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer

@@ -8,6 +8,7 @@ import { TOKEN } from "config/config";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import HelperService from "services/Helper";
 const LoginComponent = (props) => {
   const [data, setData] = useState({
     username: "",
@@ -19,17 +20,24 @@ const LoginComponent = (props) => {
     setData((prevState) => ({ ...prevState, [name]: value }));
     // data[name] = value;
   };
+
   const handleSubmit = () => {
+    // data.password = HelperService.hashMD5(data.password);
+
     axios
       .post("/admin/login", data)
       .then((res) => {
+        console.log("res :>> ", res);
         const { data } = res;
-        localStorage.setItem(TOKEN, data.token);
-        Swal.fire("Đăng Nhập Thành Công", "You clicked the button!", "success").then((result) => {
-          if (result.isConfirmed) {
-            navigate("/");
-          }
-        });
+        console.log('data.hasOwnProperty("token") :>> ', data.hasOwnProperty("token"));
+        if (data.hasOwnProperty("token")) {
+          localStorage.setItem(TOKEN, data.token);
+          Swal.fire("Login Success", "You clicked the button!", "success").then((result) => {
+            if (result.isConfirmed) {
+              navigate("/admin/project");
+            }
+          });
+        }
       })
       .catch((e) => {
         console.log("e", e);

@@ -11,6 +11,7 @@ import { TOKEN } from "config/config";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Enums from "config/enums";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -84,7 +85,7 @@ const ProjectList = (props) => {
           <TableRow>
             <TableCell>Id</TableCell>
             <TableCell align="left">Title</TableCell>
-            <TableCell align="left">Name</TableCell>
+
             <TableCell align="center">Type</TableCell>
             <TableCell align="center">Action</TableCell>
           </TableRow>
@@ -96,9 +97,9 @@ const ProjectList = (props) => {
                 {row.id}
               </TableCell>
               <TableCell align="left">{row.title}</TableCell>
-              <TableCell align="left">{row.name ? row.name : "-"}</TableCell>
+              {/* <TableCell align="left">{row.name ? row.name : "-"}</TableCell> */}
 
-              <TableCell align="center">{row.type}</TableCell>
+              <TableCell align="center">{Enums.TYPE_PARSE[row.type]}</TableCell>
               <TableCell align="center">
                 <Button
                   size="small"

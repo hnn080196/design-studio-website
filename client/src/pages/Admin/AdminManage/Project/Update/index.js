@@ -14,41 +14,54 @@ import axios from "axios";
 import ImportImage from "core/ImportImage";
 import { TOKEN } from "config/config";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import Enums from "config/enums";
+import InputEditorHook from "core/InputEditor";
 const actionRequest = {
   UPLOAD: 0,
   CREATE: 1
 };
 const UpdateProject = (props) => {
-  const [action, setAction] = useState(actionRequest.UPLOAD);
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
   let location = useLocation();
   const { state } = location;
-  const [data, setData] = useState({
-    title: "",
-    subTitle: "",
-    content: "",
-    type: 0,
-    status: 0,
-    images: ""
-  });
+  const [data, setData] = useState({});
 
+  useEffect(() => {
+    data.id = state.id;
+    data.subTitle = state.subTitle;
+    data.title = state.title;
+    data.type = state.type;
+    data.status = state.status ? state.status : 0;
+    data.content = state.content;
+
+    setData(state);
+  }, []);
+
+  useEffect(() => {
+    const arrImages = JSON.parse(state.images).map((item) => ({ link: item }));
+    setImages(arrImages);
+  }, []);
   const handleOnChange = (name, value) => {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
-  const UpdateProject = async (imageList) => {
-    data.images = JSON.stringify(imageList);
-    const result = await axios.post("/admin/project", data, {
+
+  const updateProject = async (imageList) => {
+    if (imageList.length !== 0) {
+      const arrLink = imageList.map((item) => item.link);
+      console.log("arrLink :>> ", arrLink);
+      data.images = JSON.stringify(arrLink);
+    }
+    const result = await axios.put("/admin/project", data, {
       headers: {
         token: localStorage.getItem(TOKEN)
       }
     });
     if (result.status === 200) {
-      Swal.fire("Đăng Nhập Thành Công", "You clicked the button!", "success").then((result) => {
+      Swal.fire("Update Success!!", "You clicked the button!", "success").then((result) => {
         navigate("/admin/project");
       });
     }
@@ -63,12 +76,18 @@ const UpdateProject = (props) => {
       }
     });
     if (result.status === 200) {
-      return result.data.data;
+      return { link: result.data.data };
     }
   };
+
   const handleSubmit = async () => {
-    const imageList = await Promise.all(images.map((item) => uploadImages(item.file)));
-    UpdateProject(imageList);
+    let imageList = [];
+    const notExistedImages = images.filter((image) => "file" in image);
+    if (notExistedImages.length !== 0) {
+      imageList = await Promise.all(notExistedImages.map((item) => uploadImages(item.file)));
+    }
+    const mergeImages = [...images.filter((image) => !("file" in image)), ...imageList];
+    updateProject(mergeImages);
   };
 
   const handleUploadImage = (name, value) => {
@@ -101,22 +120,22 @@ const UpdateProject = (props) => {
             required
             id="subTitle"
             label="Sub Title"
+            multiline
+            rows={4}
             defaultValue={state.subTitle}
             // placeholder="Please fill project subTitle"
             onChange={(event) => handleOnChange("subTitle", event.target.value)}
           />
-
-          <TextField
-            fullWidth
-            required
+          <InputEditorHook
+            label="Nội dung"
+            required={true}
+            // className="input-default"
             id="content"
-            label="Description"
-            multiline
-            rows={4}
+            name="content"
+            onChange={handleOnChange}
             defaultValue={state.content}
-            onChange={(event) => handleOnChange("content", event.target.value)}
-            // placeholder="Please fill project Description"
           />
+
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
             <Select
@@ -133,7 +152,7 @@ const UpdateProject = (props) => {
               ))}
             </Select>
           </FormControl>
-          <ImportImage name="images" max={10} onChange={handleUploadImage} />
+          <ImportImage defaultValue={images} name="images" max={10} onChange={handleUploadImage} />
           <Box display={"flex"} justifyContent="flex-end">
             <Button
               variant="contained"

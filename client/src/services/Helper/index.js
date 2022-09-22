@@ -5,6 +5,7 @@
  */
 
 // import Localize from 'service/localize'
+import CryptoJS from "crypto-js";
 
 class HelperService {
   static isEmpty(value) {
@@ -29,9 +30,9 @@ class HelperService {
     }
   }
 
-  // static hashMD5(string = "") {
-  //   return CryptoJS.MD5(string).toString();
-  // }
+  static hashMD5(string = "") {
+    return CryptoJS.MD5(string).toString();
+  }
 
   // static hashSHA256(string) {
   //   return CryptoJS.SHA256(string).toString();

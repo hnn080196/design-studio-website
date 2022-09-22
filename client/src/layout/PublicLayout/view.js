@@ -42,7 +42,7 @@ const PublicLayout = (props) => {
                   }}
                   scrolling="no"
                   frameBorder={0}
-                  allowFullScreen="true"
+                  // allowFullScreen="true"
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 />
                 <a href="#">

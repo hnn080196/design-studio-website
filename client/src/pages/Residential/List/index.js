@@ -1,3 +1,4 @@
+import axios from "axios";
 import Enums from "config/enums";
 import { withRouter } from "hook/withRouter";
 import React, { Component, Fragment } from "react";
@@ -7,7 +8,9 @@ export class Residential extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      list: []
+    };
     this.handleRedirect = this.handleRedirect.bind(this);
   }
   handleRedirect(id) {
@@ -18,6 +21,13 @@ export class Residential extends Component {
     } catch (e) {
       console.error("Commercial execute handleRedirect error", e.message);
     }
+  }
+  componentDidMount() {
+    let { list } = this.state;
+    axios.get("/public/project?type=0").then(({ data }) => {
+      list = data.data;
+      this.setState({ list });
+    });
   }
   render() {
     return (

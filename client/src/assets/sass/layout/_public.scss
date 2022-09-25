@@ -21,6 +21,43 @@
      }
    }
 
+   .public-layout--nav {
+     .public-layout--dropdown {
+       @media only screen and (min-width: 991.5px) {
+         .dropdown-menu {
+           position: fixed;
+           top: 80px;
+           left: 0;
+           right: 0;
+           margin: 0;
+           border: none;
+           background-color: rgba(0, 0, 0, 0.8);
+           transition: opacity .2s ease-out;
+
+           opacity: 0;
+           display: block;
+
+           .dropdown-item {
+             color: #fff;
+             text-align: center;
+             transition: background-color .2s;
+
+             &:hover {
+               background-color: #fff;
+               color: #000;
+             }
+           }
+
+           &.show {
+             opacity: 1;
+             display: block;
+           }
+         }
+       }
+
+     }
+   }
+
    .social-button {
      display: flex;
      flex-direction: row;
@@ -31,4 +68,5 @@
    .content {
      height: calc(100vh - 81px);
    }
+
  }

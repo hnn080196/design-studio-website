@@ -15,8 +15,8 @@ section.home {
     }
 
     .carousel-control-prev {
-
-      left: 35%;
+      left: 5%;
+      width: 45%;
 
       .carousel-control-prev-icon {
         display: none;
@@ -36,7 +36,7 @@ section.home {
     position: absolute;
     top: 0;
     left: 0;
-    width: 35%;
+    // width: 35%;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
@@ -46,12 +46,17 @@ section.home {
 
     align-items: center;
 
+    // .show {
+    //   width: 100%;
+    // }
+
     .home--content {
-      margin-left: 130px;
-      margin-right: 30px;
+      // margin-left: 130px;
+      // margin-right: 30px;
+      padding: 30px;
 
       h3 {
-        font-size: 18px;
+        font-size: 26px;
         font-weight: 700;
         letter-spacing: 1.2;
         line-height: 50px;
@@ -61,10 +66,57 @@ section.home {
       p {
         font-size: 14px;
         text-align: justify;
-        line-height: 24px;
+        line-height: 28px;
       }
 
       // width: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 1250px) {
+    .carousel {
+
+
+      .carousel-control-prev {
+        left: 35%;
+
+        .carousel-control-prev-icon {
+          display: none;
+        }
+      }
+
+      .carousel-control-next {
+        width: 50%;
+
+        .carousel-control-next-icon {
+          display: none;
+        }
+      }
+    }
+
+    .home--intro {
+      width: 35%;
+
+      .home--content {
+        margin-left: 130px;
+        margin-right: 30px;
+
+        h3 {
+          font-size: 26px;
+          font-weight: 700;
+          letter-spacing: 1.2;
+          line-height: 50px;
+          margin-bottom: 18px;
+        }
+
+        p {
+          font-size: 14px;
+          text-align: justify;
+          line-height: 28px;
+        }
+
+        // width: 20%;
+      }
     }
   }
 }

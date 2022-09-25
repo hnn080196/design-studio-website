@@ -13,71 +13,73 @@ export const data = [
   {
     id: "id-01",
     image: img01,
-    projectName: "Việt Trì Villa",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
+    title: "Việt Trì Villa",
+    subTitle:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per.",
+    content: "<ul><li>Test 1</li><li>test 2</li><li>test 3</li><li><br></li></ul>"
   },
+
   {
     id: "id-02",
-
     image: img02,
-    projectName: "TIME HOUSE - Mảnh ghép của thời gian",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
+    title: "TIME HOUSE - Mảnh ghép của thời gian",
+    subTitle:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per.",
+    content: "<ul><li>Test 1</li><li>test 2</li><li>test 3</li><li><br></li></ul>"
   },
 
   {
     id: "id-03",
 
     image: img03,
-    projectName: "Folding House",
-    description:
+    title: "Folding House",
+    subtitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-04",
 
     image: img04,
-    projectName: "D.S House",
-    description:
+    title: "D.S House",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-05",
 
     image: img05,
-    projectName: "Thạch Thất House",
-    description:
+    title: "Thạch Thất House",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-06",
     image: img06,
-    projectName: "Biệt Thự FLC Thanh Hóa",
-    description:
+    title: "Biệt Thự FLC Thanh Hóa",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-07",
 
     image: img07,
-    projectName: "Quảng Ninh House",
-    description:
+    title: "Quảng Ninh House",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-08",
 
     image: img08,
-    projectName: "Đà Nẵng House",
-    description:
+    title: "Đà Nẵng House",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   },
   {
     id: "id-09",
     image: img09,
-    projectName: "An Giang House",
-    description:
+    title: "An Giang House",
+    subTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies malesuada pellentesque. Class aptent taciti sociosqu ad litora torquent per."
   }
 ];

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { data } from "./data";
+// import { data } from "./data";
 import { Col, Container, Row } from "react-bootstrap";
-
+import Enums from "config/enums";
+import HTMLReactParser from "html-react-parser";
 function PrevArrow(props) {
   const { onClick } = props;
   return <div className="custom-slider__prev" onClick={onClick}></div>;
@@ -15,6 +16,7 @@ function NextArrow(props) {
 }
 
 const SliderCommon = (props) => {
+  const { data, handleRedirectToProject } = props;
   const [showDescription, setShowDescription] = useState(false);
   const handleToggle = () => {
     setShowDescription(!showDescription);
@@ -64,12 +66,13 @@ const SliderCommon = (props) => {
   return (
     <div className="custom-slider">
       <Slider {...settings}>
-        {data.image.map((item, index) => (
-          <div key={index} className="custom-slider__item" style={{ width: "70vw" }}>
-            <img src={item} className="custom-slider__img" />
-            <div className="custom-slider__brightness"></div>
-          </div>
-        ))}
+        {data &&
+          JSON.parse(data.images).map((item, index) => (
+            <div key={index} className="custom-slider__item" style={{ width: "70vw" }}>
+              <img src={`http://localhost:3000/${item}`} className="custom-slider__img" />
+              <div className="custom-slider__brightness"></div>
+            </div>
+          ))}
       </Slider>
       <div
         className={`custom-slider__description ${
@@ -79,28 +82,31 @@ const SliderCommon = (props) => {
         <Container style={{ padding: "30px" }}>
           <Row className="custom-slider__toolbar">
             <Col>
-              <h1>Đà Nẵng House</h1>
-              <span>Residential</span>
+              <h3>{data?.title}</h3>
+              <span>{Enums.TYPE_PARSE[data?.type]}</span>
             </Col>
             <Col className="custom-slider__toolbar--right">
               <div className="custom-slider__toolbar--icons">
-                <i className="fa fa-angle-double-left" />
+                <i className="fa fa-angle-double-left" onClick={() => handleRedirectToProject(-1)} />
                 {showDescription ? (
                   <i className="fa fa-angle-down" onClick={() => handleToggle()} />
                 ) : (
                   <i className="fa fa-angle-up" onClick={() => handleToggle()} />
                 )}
 
-                <i className="fa fa-angle-double-right" />
+                <i className="fa fa-angle-double-right" onClick={() => handleRedirectToProject(1)} />
               </div>
             </Col>
           </Row>
           <Row>
-            <Col>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia assumenda ipsam placeat veniam possimus et
-              nisi consequatur nam saepe.
+            <Col
+              xs={8}
+              className="custom-slider__content"
+              // style={{ maxHeight: "200px", overflow: "hidden", overflowY: "scroll" }}
+            >
+              {HTMLReactParser(data ? data.content : "")}
             </Col>
-            <Col></Col>
+            {/* <Col></Col> */}
           </Row>
         </Container>
       </div>

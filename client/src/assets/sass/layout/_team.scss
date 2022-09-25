@@ -1,64 +1,74 @@
 .box__item {
-    .teamImg {
-        p{
-            color: #fff;
-        }
-        position: relative;
-        overflow: hidden;
-        .info {
-            position: absolute;
-            display: none;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            z-index: 99999;
-            padding: 0 15px;
-        }
-        &:hover {
-            .info {
-                display: flex;
-                align-items: center;
-            }
-        }
-        img {
-            max-width: 100%;
-            vertical-align: middle;
-        }
-        &:before {
-            position: absolute;
-            content: "";
-            width: 100%;
-            left: 0;
-            height: 100%;
-            bottom: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            visibility: hidden;
-            transition: all 0.4s ease-in-out 0s;
-            text-align: center;
-        }
+  margin-bottom: 20px;
+
+  .teamImg {
+    p {
+      color: #fff;
     }
+
+    position: relative;
+    overflow: hidden;
+
+    .info {
+      position: absolute;
+      display: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 99999;
+      padding: 0 15px;
+    }
+
     &:hover {
-        .teamImg::before {
-            z-index: 1000;
-            visibility: visible;
-            transition: all 0.4s ease-in-out 0s;
-            bottom: 0px;
-        }
+      .info {
+        display: flex;
+        align-items: center;
+      }
     }
-    .teamInfo {
-        background: #fff;
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.23);
-        padding: 15px 0;
-        text-align: center;
-        margin-top: -20px;
-        z-index: 1000;
-        position: relative;
-        h3 {
-            margin-top: 0;
-            font-weight: bold;
-            margin-bottom: 6px;
-            font-size: 16px;
-        }
+
+    img {
+      max-width: 100%;
+      vertical-align: middle;
     }
+
+    &:before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      left: 0;
+      height: 100%;
+      bottom: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      visibility: hidden;
+      transition: all 0.4s ease-in-out 0s;
+      text-align: center;
+    }
+  }
+
+  &:hover {
+    .teamImg::before {
+      z-index: 1000;
+      visibility: visible;
+      transition: all 0.4s ease-in-out 0s;
+      bottom: 0px;
+    }
+  }
+
+  .teamInfo {
+    background: #fff;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.23);
+    padding: 15px 0;
+    text-align: center;
+    margin-top: -20px;
+    z-index: 1000;
+    position: relative;
+
+    h3 {
+      margin-top: 0;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+  }
 }

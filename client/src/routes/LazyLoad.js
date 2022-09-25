@@ -1,13 +1,8 @@
 import React, { Suspense } from "react";
-const LoaderComponent = () => (
-  <div className="d-flex justify-content-center">
-    <div className="spinner-border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  </div>
-);
+import Loading from "component/Loading";
+
 const LazyLoadComponent = ({ children }) => {
-  return <Suspense fallback={<LoaderComponent />}>{children}</Suspense>;
+  return <Suspense fallback={<Loading />}>{children}</Suspense>;
 };
 
 export default LazyLoadComponent;

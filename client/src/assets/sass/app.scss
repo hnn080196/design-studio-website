@@ -11,6 +11,7 @@ body {
 }
 
 @import 'layout/public';
+@import 'layout/loading';
 @import 'pages/home';
 
 @import "pages/card";
@@ -20,4 +21,5 @@ body {
 @import 'layout/footer';
 @import 'layout/contact';
 @import 'component/slider';
-@import 'pages/residential'
+@import 'pages/residential';
+@import 'pages/commercial'

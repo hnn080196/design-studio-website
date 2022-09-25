@@ -95,7 +95,7 @@
     }
 
     &.custom-slider__description--show {
-      max-height: 300px;
+      max-height: 400px;
     }
 
     .custom-slider__toolbar {
@@ -115,6 +115,13 @@
           cursor: pointer;
         }
       }
+    }
+
+    .custom-slider__content {
+      max-height: 200px;
+      overflow: hidden;
+      overflow-y: auto;
+
     }
 
   }

@@ -35,7 +35,7 @@ const UpdateProject = (props) => {
     data.subTitle = state.subTitle;
     data.title = state.title;
     data.type = state.type;
-    data.status = state.status ? state.status : 0;
+    data.status = state.status ? state.status : 1;
     data.content = state.content;
 
     setData(state);
@@ -141,7 +141,8 @@ const UpdateProject = (props) => {
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              value={state.type}
+              // value={state.type}
+              defaultValue={state.type}
               label="Type"
               onChange={(event) => handleSelectChange("type", event.target.value)}
             >

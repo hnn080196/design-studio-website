@@ -1,16 +1,17 @@
-import Banner from "CommonComponent/Banner";
-import Footer from "CommonComponent/Footer";
+import Banner from "component/Banner";
+import Footer from "component/Footer";
 import React from "react";
-import data from "./team.data.json";
+import { Col, Row } from "react-bootstrap";
+import { data } from "./data";
 const Team = (props) => {
   return (
     <>
-      <Banner title='Our Team'/>
-      <div className="container-fluid">
+      <Banner title="Our Team" />
+      <div className="container-fluid" style={{ marginBottom: "5rem" }}>
         <div className="team-wrap">
-          <div className="row">
+          <Row>
             {data.map((item, id) => (
-              <div key={id} className="col-lg-2 col-md-3 col-sm-4 box__item">
+              <Col xl={2} lg={3} sm={4} xs={6} key={id} className="box__item">
                 <div className="teamImg">
                   <img src={item.image} alt="" />
                   <div className="info">
@@ -21,13 +22,13 @@ const Team = (props) => {
                   <h3>{item.name}</h3>
                   <div className="designation">{item.job}</div>
                 </div>
-              </div>
+              </Col>
             ))}
-          </div>
+          </Row>
         </div>
       </div>
-      <div style={{marginBottom:'5rem'}}></div>
-      <Footer/>
+
+      <Footer />
     </>
   );
 };

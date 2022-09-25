@@ -1,6 +1,8 @@
 import { PROJECT_TYPE } from "store/action/project";
 const initialState = {
   projectsPublic: [],
+  residentialProjectsPublic: [],
+
   projectsPrivate: []
 };
 
@@ -10,9 +12,10 @@ export default (state = initialState, action) => {
     case PROJECT_TYPE.GET_ALL:
       // localStorage.setItem("TOKEN", payload.accessToken);
       return { ...state, projectsPublic: payload };
-    case PROJECT_TYPE.GET_ALL_BY_ADMIN:
+    case PROJECT_TYPE.GET_ALL_RESIDENT:
       // localStorage.setItem("TOKEN", payload.accessToken);
-      return { ...state, projectsPrivate: payload };
+      return { ...state, residentialProjectsPublic: payload };
+
     default:
       return { ...state };
   }

@@ -1,37 +1,45 @@
-import axios from "axios";
+import React, { useEffect } from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Enums from "config/enums";
-import { withRouter } from "hook/withRouter";
-import React, { Component } from "react";
-import View from "./view";
-export class Commercial extends Component {
-  constructor(props) {
-    super(props);
+import { getAllProject } from "store/action/project";
+import Loading from "component/Loading";
 
-    this.state = {
-      list: []
-    };
-    this.handleRedirect = this.handleRedirect.bind(this);
-  }
-  componentDidMount() {
-    let { list } = this.state;
-    axios.get("/public/project?type=1").then(({ data }) => {
-      list = data.data;
-      this.setState({ list });
-    });
-  }
+const View = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { projectsPublic } = useSelector((state) => state.project);
+  const { loading } = useSelector((state) => state.loading);
 
-  handleRedirect(id) {
+  useEffect(() => {
+    dispatch(getAllProject());
+  }, []);
+
+  const handleRedirect = (item) => {
     try {
-      const { router } = this.props;
-      router.navigate(`${Enums.PATH.COMMERCIAL._}/${id}`);
+      navigate(`${Enums.PATH.COMMERCIAL._}/${item.id}`, { state: item });
     } catch (e) {
       console.error("Commercial execute handleRedirect error", e.message);
     }
-  }
-  render() {
-    const { list } = this.state;
-    return <View list={list} handleRedirect={this.handleRedirect} />;
-  }
-}
+  };
+  if (loading) return <Loading />;
 
-export default withRouter(Commercial);
+  return (
+    <section className="commercial">
+      <div className="commercial__gallery">
+        {projectsPublic?.map((item, index) => (
+          <div className="commercial__gallery--item" key={index} onClick={(e) => handleRedirect(item)}>
+            <img src={JSON.parse(item.images)[0]} />
+            <div className="caption">
+              <h4 className="caption__title">{item.title}</h4>
+              <span className="caption__subTitle">{item.subTitle}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default View;

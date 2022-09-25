@@ -33,7 +33,7 @@ const CreateProject = (props) => {
     subTitle: "",
     content: "",
     type: 0,
-    status: 0,
+    status: 1,
     images: ""
   });
 

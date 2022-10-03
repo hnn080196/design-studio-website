@@ -30,7 +30,7 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.listen(port, () => console.log(`Listening on port ${port}`));
 MariaDbRepo.createConnection(config);
-app.post("/admin/login", async (req, res) => {
+app.post("/api/admin/login", async (req, res) => {
   console.log("Start login");
   try {
     console.log(req.body);
@@ -60,7 +60,7 @@ app.post("/admin/login", async (req, res) => {
     });
   }
 });
-app.post("/admin/project", async (req, res) => {
+app.post("/api/admin/project", async (req, res) => {
   try {
     const token = req.header("token");
 
@@ -96,7 +96,7 @@ app.post("/admin/project", async (req, res) => {
     });
   }
 });
-app.put("/admin/project", async (req, res) => {
+app.put("/api/admin/project", async (req, res) => {
   try {
     const token = req.header("token");
 
@@ -129,7 +129,7 @@ app.put("/admin/project", async (req, res) => {
     });
   }
 });
-app.get("/admin/project", async (req, res) => {
+app.get("/api/admin/project", async (req, res) => {
   try {
     const token = req.header("token");
 
@@ -152,7 +152,7 @@ app.get("/admin/project", async (req, res) => {
     });
   }
 });
-app.delete("/admin/project", async (req, res) => {
+app.delete("/api/admin/project", async (req, res) => {
   try {
     const token = req.header("token");
 
@@ -175,7 +175,7 @@ app.delete("/admin/project", async (req, res) => {
     });
   }
 });
-app.post("/admin/upload", upload.single("image"), async (req, res) => {
+app.post("/api/admin/upload", upload.single("image"), async (req, res) => {
   try {
     const token = req.header("token");
 
@@ -205,7 +205,7 @@ app.post("/admin/upload", upload.single("image"), async (req, res) => {
     });
   }
 });
-app.get("/public/project", async (req, res) => {
+app.get("/api/public/project", async (req, res) => {
   try {
     res.json({
       code: 0,
@@ -218,6 +218,6 @@ app.get("/public/project", async (req, res) => {
     });
   }
 });
-app.get("/public/news", async (req, res) => {});
+app.get("/api/public/news", async (req, res) => {});
 
 // export default app;

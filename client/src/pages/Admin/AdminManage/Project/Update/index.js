@@ -52,10 +52,9 @@ const UpdateProject = (props) => {
   const updateProject = async (imageList) => {
     if (imageList.length !== 0) {
       const arrLink = imageList.map((item) => item.link);
-      console.log("arrLink :>> ", arrLink);
       data.images = JSON.stringify(arrLink);
     }
-    const result = await axios.put("/admin/project", data, {
+    const result = await axios.put("/api/admin/project", data, {
       headers: {
         token: localStorage.getItem(TOKEN)
       }
@@ -69,7 +68,7 @@ const UpdateProject = (props) => {
   const uploadImages = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
-    const result = await axios.post("/admin/upload", formData, {
+    const result = await axios.post("/api/admin/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         token: localStorage.getItem(TOKEN)

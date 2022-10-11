@@ -69,7 +69,7 @@ const SliderCommon = (props) => {
         {data &&
           JSON.parse(data.images).map((item, index) => (
             <div key={index} className="custom-slider__item" style={{ width: "70vw" }}>
-              <img src={`http://localhost:3000/${item}`} className="custom-slider__img" />
+              <img src={`/${item}`} className="custom-slider__img" />
               <div className="custom-slider__brightness"></div>
             </div>
           ))}

@@ -9,7 +9,7 @@ export const PROJECT_TYPE = {
 export const getAllProject = () => (dispatch) => {
   try {
     dispatch({ type: "LOADING_SHOW" });
-    axios.get("/public/project?type=1").then(({ data }) => {
+    axios.get("/api/public/project?type=1").then(({ data }) => {
       dispatch({
         type: PROJECT_TYPE.GET_ALL,
         payload: data.data
@@ -26,7 +26,7 @@ export const getAllProject = () => (dispatch) => {
 export const getAllResidentProject = () => (dispatch) => {
   try {
     dispatch({ type: "LOADING_SHOW" });
-    axios.get("/public/project?type=0").then(({ data }) => {
+    axios.get("/api/public/project?type=0").then(({ data }) => {
       dispatch({
         type: PROJECT_TYPE.GET_ALL_RESIDENT,
         payload: data.data

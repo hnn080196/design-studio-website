@@ -30,7 +30,7 @@ const ProjectList = (props) => {
 
   useEffect(() => {
     axios
-      .get("/admin/project", {
+      .get("/api/admin/project", {
         headers: {
           token: localStorage.getItem(TOKEN)
         }
@@ -42,7 +42,7 @@ const ProjectList = (props) => {
 
   const getListProject = () => {
     axios
-      .get("/admin/project", {
+      .get("/api/admin/project", {
         headers: {
           token: localStorage.getItem(TOKEN)
         }
@@ -63,7 +63,7 @@ const ProjectList = (props) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete("/admin/project", {
+          .delete("/api/admin/project", {
             headers: {
               token: localStorage.getItem(TOKEN)
             },

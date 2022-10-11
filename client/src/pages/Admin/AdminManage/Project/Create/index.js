@@ -39,7 +39,7 @@ const CreateProject = (props) => {
 
   const createProject = async (imageList) => {
     data.images = JSON.stringify(imageList);
-    const result = await axios.post("/admin/project", data, {
+    const result = await axios.post("/api/admin/project", data, {
       headers: {
         token: localStorage.getItem(TOKEN)
       }
@@ -53,7 +53,7 @@ const CreateProject = (props) => {
   const uploadImages = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
-    const result = await axios.post("/admin/upload", formData, {
+    const result = await axios.post("/api/admin/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         token: localStorage.getItem(TOKEN)

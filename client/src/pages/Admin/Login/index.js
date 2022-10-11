@@ -25,9 +25,8 @@ const LoginComponent = (props) => {
     // data.password = HelperService.hashMD5(data.password);
 
     axios
-      .post("/admin/login", data)
+      .post("/api/admin/login", data)
       .then((res) => {
-        console.log("res :>> ", res);
         const { data } = res;
         console.log('data.hasOwnProperty("token") :>> ', data.hasOwnProperty("token"));
         if (data.hasOwnProperty("token")) {

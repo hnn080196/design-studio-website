@@ -27,21 +27,20 @@ function Home() {
       <div className={classNames("home--intro", { ["show"]: !matches || show })}>
         {(!matches || show) && (
           <div className={classNames("home--content")}>
-            <h3>Xin Chào</h3>
+            <h3>SOSA Studio - Kiến trúc nuôi dưỡng tâm hồn,</h3>
             <p>
-              &emsp; X11 Design Studio là công ty thiết kế kiến trúc, nội thất và cảnh quan được thành lập vào năm 2018.
-              Phương châm thiết kế của chúng tôi là tìm đến những ý tưởng thiết kế sáng tạo và độc đáo. Điều đó là chưa
-              đủ nếu không có yếu tố chi tiết và sự tinh tế trong từng đường nét, đó có thể là những điều tuy nhỏ bé
-              nhưng vô cùng quan trọng. Với đôi mắt luôn quan sát tổng thể, đôi tay chú ý đến các chi tiết và sự quyết
-              tâm cao độ giúp chúng tôi tạo ra những sản phẩm kiến ​​trúc độc đáo, vượt thời gian.Tại X11 Design Studio,
-              đó là kim chỉ nam, chúng tôi tiếp cận từng dự án theo một cách riêng biệt, phù hợp với những đặc thù riêng
-              của dự án. Để cố gắng đưa đến khách hàng một sản phẩm hoàn thiện, tinh tế nhưng không kém phần độc đáo và
-              thú vị.
+              &emsp; SOSA Studio là Công ty Thiết Kế Kiến Trúc, nội thất và cảnh quan tại Việt Nam. Nơi việc tạo ra
+              những ngôi nhà ( công trình) đương đại mang hơi thở của sự bình yên. Mỗi không gian và chi tiết kiến trúc
+              được tạo ra, chúng tôi luôn hướng đến chất cảm trong tâm hồn mỗi con người sống trong không gian đó ( chủ
+              nhân của ngôi nhà). Mỗi dự án khi tiếp nhận chúng tôi luôn tìm cách tạo ra kiến trúc phù hợp với đặc thù
+              riêng của từng dự án. Luôn đồng hành cùng khách hàng trong toàn bộ quá trình từ những bước ban đầu thiết
+              kế ý tưởng cho đến khi hoàn thiện dự án. Với con mắt nhạy bén trong thiết kế chú ý đến các chi tiết và
+              chất cảm trong không gian giúp chúng tôi tạo ra kiến trúc độc đáo, vượt thời gian.
               <br />
-              Và với những điều đó, chúng tôi mong mang lại sự trải nghiệm và cống hiến để thực hiện ước mơ của bạn.
+              Tại SOSA Studio – Đó là một tuyên ngôn trong thiết kế của chúng tôi.
               <br />
               <br />
-              Thân...!
+              Trân trọng !
             </p>
           </div>
         )}

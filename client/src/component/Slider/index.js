@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-// import { data } from "./data";
+import { fakeData } from "./data";
 import { Col, Container, Row } from "react-bootstrap";
 import Enums from "config/enums";
 import HTMLReactParser from "html-react-parser";
@@ -26,7 +26,7 @@ const SliderCommon = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 2,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
     centerMode: true,
     centerPadding: "60px",
@@ -66,13 +66,23 @@ const SliderCommon = (props) => {
   return (
     <div className="custom-slider">
       <Slider {...settings}>
-        {data &&
+        {/* {data &&
           JSON.parse(data.images).map((item, index) => (
             <div key={index} className="custom-slider__item" style={{ width: "70vw" }}>
               <img src={`/${item}`} className="custom-slider__img" />
               <div className="custom-slider__brightness"></div>
             </div>
-          ))}
+          ))} */}
+        {fakeData.image.map((item, index) => {
+          return (
+            <div key={index} className="custom-slider__item" style={{ width: "70vw" }}>
+              <div className="custom-slider__wrap-img">
+                <img src={item} className="custom-slider__img" />
+              </div>
+              <div className="custom-slider__brightness"></div>
+            </div>
+          );
+        })}
       </Slider>
       <div
         className={`custom-slider__description ${
@@ -83,7 +93,7 @@ const SliderCommon = (props) => {
           <Row className="custom-slider__toolbar">
             <Col>
               <h3>{data?.title}</h3>
-              <span>{Enums.TYPE_PARSE[data?.type]}</span>
+              {/* <span>{Enums.TYPE_PARSE[data?.type]}</span> */}
             </Col>
             <Col className="custom-slider__toolbar--right">
               <div className="custom-slider__toolbar--icons">
@@ -98,16 +108,11 @@ const SliderCommon = (props) => {
               </div>
             </Col>
           </Row>
-          <Row>
-            <Col
-              xs={8}
-              className="custom-slider__content"
-              // style={{ maxHeight: "200px", overflow: "hidden", overflowY: "scroll" }}
-            >
+          {/* <Row>
+            <Col xs={8} className="custom-slider__content">
               {HTMLReactParser(data ? data.content : "")}
             </Col>
-            {/* <Col></Col> */}
-          </Row>
+          </Row> */}
         </Container>
       </div>
     </div>

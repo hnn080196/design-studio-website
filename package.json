@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/hnn080196/design-studio-website/issues"
   },
-
   "homepage": "https://github.com/hnn080196/design-studio-website#readme",
   "dependencies": {
     "babel-loader": "^8.2.5",

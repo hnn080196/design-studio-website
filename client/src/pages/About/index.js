@@ -1,73 +1,60 @@
-import Banner from "component/Banner";
-import React from "react";
-
-const About = (props) => {
+import { Container } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import { data } from "pages/data";
+import { IconButton, useMediaQuery } from "@mui/material";
+import { ArrowForwardIosRounded, ArrowBackIosRounded } from "@mui/icons-material";
+import { useState } from "react";
+import classNames from "classnames";
+import background from "assets/images/AboutUs/aboutus.jpg";
+function Home() {
+  const matches = useMediaQuery("(max-width:1250px)");
+  const [show, setShow] = useState(false);
+  const handelToggle = (event) => {
+    event.preventDefault();
+    console.log("run");
+    setShow(!show);
+  };
   return (
-    <>
-      <Banner title="About Us" />
-      <div className="container">
-        <div className="about-wrap">
-          <div className="title">
-            <h3
-              style={{
-                paddingBottom: 30,
-                fontFamily: "Arial,Helvetica,sans-serif",
-                fontSize: 18,
-                fontWeight: 400,
-                textTransform: "uppercase",
-                fontStyle: "normal",
-                letterSpacing: 8,
-                textDecoration: "none",
-                lineHeight: "1.4em",
-                borderBottom: "1px solid #ddd"
-              }}
-            >
-              welcome to X11 Studio
-            </h3>
-          </div>
-          <div>
-            {" "}
+    <section className="home">
+      <Carousel>
+        <Carousel.Item
+          className="home--bg"
+          style={{ backgroundImage: `url('${background}')`, height: "calc(100vh - 81px)", width: "100%" }}
+        ></Carousel.Item>
+      </Carousel>
+      <div className={classNames("home--intro", { ["show"]: !matches || show })}>
+        {(!matches || show) && (
+          <div className={classNames("home--content")}>
+            <h3>SOSA Studio - Kiến trúc nuôi dưỡng tâm hồn,</h3>
             <p>
-              X11&nbsp;Design Studio là một công ty thiết kế kiến trúc, nội thất và cảnh quan được thành lập vào năm
-              2018.
-              <br />Ở mỗi dự án, chúng tôi luôn hướng đến những ý tưởng&nbsp;thiết kế sáng tạo và độc đáo. Nhưng&nbsp;sẽ
-              không&nbsp;là gì nếu không có yếu tố chi tiết và sự tinh tế, đó là những điều tuy nhỏ bé nhưng&nbsp;vô
-              cùng&nbsp;quan trọng. Với con mắt quan tâm đến thiết kế, đôi tay chú ý đến các chi tiết và sự quyết tâm
-              giúp chúng tôi tạo ra những sản phẩm kiến ​​trúc độc đáo, vượt thời gian. Tại X11, đó là kim chỉ
-              nam&nbsp;của chúng tôi, tập trung vào chất lượng cao với sự chú ý đến từng chi tiết trong việc thực hiện
-              các dự án chuyên nghiệp, chúng tôi tiếp cận từng dự án theo một cách riêng biệt để phù hợp với những đặc
-              thù riêng của dự án. Để phấn đấu đưa đến khách hàng một sản phẩm hoàn thiện nhưng không kém phần độc đáo.
-              Và với những điều&nbsp;đó, chúng tôi mong mang lại sự trau dồi và cống hiến để thực hiện ước mơ của bạn.
+              &emsp; Tại SOSA Studio chúng tôi luôn đồng hành cùng khách hàng từ bước ban đầu thiết kế ý tưởng đến khi
+              hoàn thành dự án. Mỗi một dự án đều mang một câu chuyện, một tâm hồn của mỗi khách hàng, từ những kinh
+              nghiệm và sự tận tâm chúng tôi luôn tìm kiếm sáng tạo những ý tưởng thiết kế phù hợp để gửi gắm tâm hồn
+              chủ nhân vào từng không gian sống. Bằng sự tận tâm và nhưng kinh nghiệm của mình, chúng tôi luôn sáng tạo
+              ra những thiết kế độc đáo . Sự hài lòng của khách hàng luôn được đặt lên hàng đầu.
               <br />
-              Thân...!
+              Tư vấn thiết kế Kiến trúc, nội thất và cảnh quan các công trình dân dụng và thương mại.
+              <br />
+              <br />
+              <br />
+              Địa chỉ: 466/41, Lê Văn Sỹ, Phường 14, Quận 3, TP HỒ CHÍ MINH
+              <br />
+              SĐT: 0962944204
+              <br />
+              Email: sosastudiovn@gmail.com
             </p>
           </div>
-        </div>
-        <div className="about-wrap">
-          <div className="title">
-            <h3
-              style={{
-                paddingBottom: 30,
-                fontFamily: "Arial,Helvetica,sans-serif",
-                fontSize: 18,
-                fontWeight: 400,
-                textTransform: "uppercase",
-                fontStyle: "normal",
-                letterSpacing: 8,
-                textDecoration: "none",
-                lineHeight: "1.4em",
-                borderBottom: "1px solid #ddd"
-              }}
-            >
-              Our Awards
-            </h3>
-          </div>
-          <p>TƯ VẤN THIẾT KẾ, NỘI THẤT, NGOẠI CẢNH CHO CÁC CÔNG TRINH DÂN DỤNG VÀ THƯƠNG MẠI- DỊCH VỤ</p>
-          <div className="row"></div>
-        </div>
-      </div>
-    </>
-  );
-};
+        )}
+        {matches && (
+          <IconButton sx={{ color: "#fff", zIndex: 2 }} onClick={(event) => handelToggle(event)}>
+            {!show ? <ArrowForwardIosRounded /> : <ArrowBackIosRounded />}
+          </IconButton>
+        )}
 
-export default About;
+        {/* !matches || show */}
+      </div>
+    </section>
+  );
+}
+
+export default Home;

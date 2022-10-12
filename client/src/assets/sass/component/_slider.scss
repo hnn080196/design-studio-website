@@ -56,10 +56,21 @@
         outline: none;
         position: relative;
 
-        .custom-slider__img {
-          width: 100%;
+
+        .custom-slider__wrap-img {
           height: calc(100vh - 81px);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .custom-slider__img {
+            width: 100%;
+            // height: auto;
+            vertical-align: middle;
+
+          }
         }
+
 
         .custom-slider__brightness {
           position: absolute;

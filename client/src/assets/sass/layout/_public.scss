@@ -14,11 +14,18 @@
    }
 
    .public-layout--brand {
-     img {
-       max-width: 100%;
+     cursor: pointer;
+
+     .public-layout--logo {
+       background-position: left center;
+       background-repeat: no-repeat;
+       background-size: 100%;
+       width: 250px;
        height: 55px;
-       //  height: auto;
+
      }
+
+
    }
 
    .public-layout--nav {

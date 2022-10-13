@@ -27,7 +27,7 @@ function Home() {
       <div className={classNames("home--intro", { ["show"]: !matches || show })}>
         {(!matches || show) && (
           <div className={classNames("home--content")}>
-            <h3>SOSA Studio - Kiến trúc nuôi dưỡng tâm hồn,</h3>
+            <h3>SOSA Studio - Kiến trúc nuôi dưỡng tâm hồn</h3>
             <p>
               &emsp; SOSA Studio là Công ty Thiết Kế Kiến Trúc, nội thất và cảnh quan tại Việt Nam. Nơi việc tạo ra
               những ngôi nhà ( công trình) đương đại mang hơi thở của sự bình yên. Mỗi không gian và chi tiết kiến trúc

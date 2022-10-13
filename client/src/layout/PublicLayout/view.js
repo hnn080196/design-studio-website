@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Logo from "assets/images/layout/logo.png";
+import Logo from "assets/images/layout/SOSA.jpg";
 import Enums from "config/enums";
 import { FacebookIcon, InstagramIcon, BehanceIcon } from "./social";
 const PublicLayout = (props) => {
@@ -10,7 +10,8 @@ const PublicLayout = (props) => {
       <Container fluid>
         <Navbar bg="light" expand="lg">
           <Navbar.Brand className="public-layout--brand " onClick={(e) => handleRedirect(Enums.PATH.HOME)}>
-            <img src={Logo} alt="" />
+            <div className="public-layout--logo" style={{ backgroundImage: `url('${Logo}')` }}></div>
+            {/* <img src={Logo} alt="" /> */}
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -31,8 +32,9 @@ const PublicLayout = (props) => {
 
               <div className="social-button">
                 <iframe
-                  src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fx11designstudio%2F&width=100&layout=button&action=like&size=large&share=false&height=65&appId"
-                  width={80}
+                  src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FSound.Of.Space.Architecture%2F&width=100&layout=button&action=like&size=large&share=false&height=65&appId"
+                  //www.facebook.com/Sound.Of.Space.Architecture
+                  width={100}
                   height={30}
                   style={{
                     border: "none",
@@ -47,13 +49,13 @@ const PublicLayout = (props) => {
                   // allowFullScreen="true"
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 />
-                <a href="https://www.facebook.com/x11designstudio/" target={"_blank"} rel="noreferrer">
+                <a href="https://www.facebook.com/Sound.Of.Space.Architecture" target={"_blank"} rel="noreferrer">
                   <FacebookIcon />
                 </a>
-                <a href="https://www.instagram.com/tuananhtran2801/" target={"_blank"} rel="noreferrer">
+                <a href="#" target={"_blank"} rel="noreferrer">
                   <InstagramIcon />
                 </a>
-                <a href="https://www.behance.net/tuananhnd22fdc" target={"_blank"} rel="noreferrer">
+                <a href="https://www.behance.net/studiososa" target={"_blank"} rel="noreferrer">
                   <BehanceIcon />
                 </a>
               </div>

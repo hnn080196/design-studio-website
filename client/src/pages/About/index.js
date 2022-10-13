@@ -11,7 +11,6 @@ function Home() {
   const [show, setShow] = useState(false);
   const handelToggle = (event) => {
     event.preventDefault();
-    console.log("run");
     setShow(!show);
   };
   return (

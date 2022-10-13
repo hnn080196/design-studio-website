@@ -11,18 +11,20 @@ const Contact = (props) => {
           <div className="text-left">
             <p>
               Engage us We’d love to hear from you. Enquiries, feedback or simply for a chat. Email to{" "}
-              <a href="mailto:x11studiovn@gmail.com">x11studiovn@gmail.com</a> or call us at 0849992882.
+              <a href="mailto:sosastudiovn@gmail.com">sosastudiovn@gmail.com</a> or call us at 0962944204.
             </p>
             <p>
               Visit us at Facebook{" "}
-              <a href="https://www.facebook.com/X11DesignStudio/">https://www.facebook.com/X11DesignStudio/</a>,
-              Instagram or Behance to connect with us so that you can be updated with our latest news and works.
+              <a href="https://www.facebook.com/Sound.Of.Space.Architecture" target={"_blank"}>
+                https://www.facebook.com/Sound.Of.Space.Architecture
+              </a>
+              , Instagram or Behance to connect with us so that you can be updated with our latest news and works.
             </p>
             <p>Join us</p>
             <p>We look forward to your talent and passion.</p>
             <p>
               Send your resume and portfolio (maximum 10MB) to{" "}
-              <a href="mailto:x11studiovn@gmail.com">x11studiovn@gmail.com</a>
+              <a href="mailto:sosastudiovn@gmail.com">sosastudiovn@gmail.com</a>
             </p>
           </div>
         </div>
@@ -31,10 +33,10 @@ const Contact = (props) => {
             <div className="row">
               <div className="col-lg-4 col-md-4">
                 <div className="contact-info-group">
-                  <a href="https://goo.gl/maps/FswNFDmvHK6cgdFj8">
+                  <a href="https://goo.gl/maps/WJzmBiC2fGqfMDPo8" target={"_blank"}>
                     <Icon.GeoAltFill className="contact__icon" />
                     <h4>Address</h4>
-                    <span>Số 04, Đường Quang Trung, Hà Đông, Hà Nội</span>{" "}
+                    <span>466/41, Lê Văn Sỹ, Phường 14, Quận 3, TP HỒ CHÍ MINH</span>{" "}
                   </a>
                 </div>
               </div>
@@ -42,14 +44,14 @@ const Contact = (props) => {
                 <div className="contact-info-group">
                   <Icon.EnvelopeOpenFill className="contact__icon" />
                   <h4>Mail us</h4>
-                  <span>x11studiovn@gmail.com</span>{" "}
+                  <span>sosastudiovn@gmail.com</span>{" "}
                 </div>
               </div>
               <div className="col-lg-4 col-md-4">
                 <div className="contact-info-group">
                   <Icon.TelephoneFill className="contact__icon" />
                   <h4>Call us</h4>
-                  <span>0849992882</span>
+                  <span>0962944204</span>
                 </div>
               </div>
             </div>
